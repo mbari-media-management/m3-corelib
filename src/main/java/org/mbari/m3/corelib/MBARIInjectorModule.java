@@ -34,7 +34,7 @@ public class MBARIInjectorModule implements Module {
     private final Executor defaultExecutor = new ForkJoinPool();
 
     public MBARIInjectorModule() {
-        this.config = ConfigFactory.load();
+        this.config = Initializer.getConfig();
     }
 
     @Override
@@ -86,10 +86,8 @@ public class MBARIInjectorModule implements Module {
         KBWebServiceFactory factory = new KBWebServiceFactory(endpoint, timeout, defaultExecutor);
         KBConceptService service = new KBConceptService(factory);
         // --- Using a local cache
-        CachedConceptService3 cachedService = new CachedConceptService3(service);
-        //CachedConceptService cachedService = new CachedConceptService(service);
-        //List<String> cachedConceptTemplates = config.getStringList("app.annotation.details.cache");
-        //cachedService.prefetch(cachedConceptTemplates);
+        CachedConceptService cachedService = new CachedConceptService(service);
+
         binder.bind(String.class)
                 .annotatedWith(Names.named("CONCEPT_ENDPOINT"))
                 .toInstance(endpoint);
