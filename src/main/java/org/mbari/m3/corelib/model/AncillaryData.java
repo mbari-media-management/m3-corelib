@@ -9,6 +9,7 @@ import java.util.UUID;
  */
 public class AncillaryData {
 
+    private Instant recordedTimestamp;
     private double altitude;
     private double depthMeters;
     private double latitude;
@@ -26,6 +27,14 @@ public class AncillaryData {
     private double z;
     private Instant lastUpdatedTime;
     private UUID uuid;
+
+    public Instant getRecordedTimestamp() {
+        return recordedTimestamp;
+    }
+
+    public void setRecordedTimestamp(Instant recordedTimestamp) {
+        this.recordedTimestamp = recordedTimestamp;
+    }
 
     public Instant getLastUpdatedTime() {
         return lastUpdatedTime;
