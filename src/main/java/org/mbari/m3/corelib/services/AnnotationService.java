@@ -70,4 +70,6 @@ public interface AnnotationService {
 
     CompletableFuture<Image> findImageByUrl(URL url);
 
+    CompletableFuture<Collection<AncillaryData>> merge(UUID videoReferenceUuid, Collection<AncillaryData> data);
+
 }

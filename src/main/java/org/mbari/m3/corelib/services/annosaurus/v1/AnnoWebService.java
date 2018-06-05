@@ -99,6 +99,11 @@ public interface AnnoWebService {
     @GET("ancillarydata/observation/{uuid}")
     Call<AncillaryData> findAncillaryData(@Path("uuid") UUID observationUuid);
 
+    @POST("ancillarydata/merge/{uuid}")
+    Call<Collection<AncillaryData>> merge(@Path("uuid") UUID videoReferenceUuid,
+                              @Body Collection<AncillaryData> data,
+                              @HeaderMap Map<String, String> headers);
+
     @GET("imagedmoments/videoreference")
     Call<List<UUID>> findAllVideoReferenceUuids();
 

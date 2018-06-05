@@ -183,6 +183,10 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
         return sendRequest(assService.update(associations));
     }
 
+    public CompletableFuture<Collection<AncillaryData>> merge(UUID videoReferenceUuid, Collection<AncillaryData> data) {
+        return sendRequest(annoService.merge(videoReferenceUuid, data, bulkHeaders));
+    }
+
     @Override
     public CompletableFuture<Image> updateImage(Image image) {
         Map<String, String> fieldMap = new HashMap<>();
