@@ -9,6 +9,7 @@ import java.util.UUID;
  */
 public class AncillaryData {
 
+    /** Used for merging only. Typically this will be null */
     private Instant recordedTimestamp;
     private double altitude;
     private double depthMeters;
