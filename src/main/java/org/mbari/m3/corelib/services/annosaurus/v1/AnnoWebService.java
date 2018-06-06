@@ -104,4 +104,7 @@ public interface AnnoWebService {
                               @Body Collection<AncillaryData> data,
                               @HeaderMap Map<String, String> headers);
 
+    @GET("imagedmoments/videoreference")
+    Call<List<UUID>> findAllVideoReferenceUuids();
+
 }

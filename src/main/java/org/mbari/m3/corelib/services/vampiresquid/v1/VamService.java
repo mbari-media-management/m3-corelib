@@ -100,6 +100,11 @@ public class VamService implements MediaService, RetrofitWebService {
     }
 
     @Override
+    public CompletableFuture<List<Media>> findByCameraIdAndDate(String cameraId, Instant startTimestamp, Instant endTimestamp) {
+        return sendRequest(vamWebService.findByCameraIdAndDates(cameraId, startTimestamp, endTimestamp));
+    }
+
+    @Override
     public CompletableFuture<List<Media>> findConcurrentByVideoReferenceUuid(UUID uuid) {
         return sendRequest(vamWebService.findConcurrent(uuid));
     }
