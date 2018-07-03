@@ -72,4 +72,6 @@ public interface AnnotationService {
 
     CompletableFuture<Collection<AncillaryData>> merge(UUID videoReferenceUuid, Collection<AncillaryData> data);
 
+    CompletableFuture<List<AncillaryData>> createOrUpdateAncillaryData(List<AncillaryData> ancillaryData);
+
 }

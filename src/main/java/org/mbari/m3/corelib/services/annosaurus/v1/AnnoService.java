@@ -21,6 +21,7 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
     private final AnnoWebService annoService;
     private final AssociationWebService assService;
     private final ImageWebService imageService;
+    private final AncillaryDataWebService dataService;
 
     private final Map<String, String> defaultHeaders;
     private final Map<String, String> bulkHeaders;
@@ -30,6 +31,7 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
         annoService = serviceFactory.create(AnnoWebService.class, authService);
         assService = serviceFactory.create(AssociationWebService.class, authService);
         imageService = serviceFactory.create(ImageWebService.class, authService);
+        dataService = serviceFactory.create(AncillaryDataWebService.class, authService);
         defaultHeaders = new HashMap<>();
         defaultHeaders.put("Accept", "application/json");
         defaultHeaders.put("Accept-Charset", "utf-8");
@@ -229,6 +231,10 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
 
     public CompletableFuture<Image> findImageByUrl(URL url) {
         return sendRequest(imageService.findByUrl(url.toExternalForm()));
+    }
+
+    public CompletableFuture<List<AncillaryData>> createOrUpdateAncillaryData(List<AncillaryData> ancillaryData) {
+        return  sendRequest(dataService.createOrUpdate(ancillaryData, bulkHeaders));
     }
 
     private void addField(Map<String, String> map, String key, Object value) {
