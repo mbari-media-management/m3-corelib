@@ -237,6 +237,14 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
         return  sendRequest(dataService.createOrUpdate(ancillaryData, bulkHeaders));
     }
 
+    public CompletableFuture<List<AncillaryData>> findAncillaryDataByVideoReference(UUID videoReferenceUuid) {
+        return sendRequest(dataService.findByVideoReferenceUuid(videoReferenceUuid));
+    }
+
+    public CompletableFuture<AncillaryDataDeleteCount> deleteAncillaryDataByVideoReference(UUID videoReferenceUuid) {
+        return sendRequest(dataService.deleteByVideoReference(videoReferenceUuid));
+    }
+
     private void addField(Map<String, String> map, String key, Object value) {
         if (value != null) {
             map.put(key, asString(value));

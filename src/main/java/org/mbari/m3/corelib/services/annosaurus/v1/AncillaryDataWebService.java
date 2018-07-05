@@ -1,13 +1,13 @@
 package org.mbari.m3.corelib.services.annosaurus.v1;
 
 import org.mbari.m3.corelib.model.AncillaryData;
+import org.mbari.m3.corelib.model.AncillaryDataDeleteCount;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.HeaderMap;
-import retrofit2.http.POST;
+import retrofit2.http.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author Brian Schlining
@@ -25,5 +25,12 @@ public interface AncillaryDataWebService {
     @POST("ancillarydata/bulk")
     Call<List<AncillaryData>> createOrUpdate(@Body List<AncillaryData> data,
                                              @HeaderMap Map<String, String> headers);
+
+    @GET("ancillarydata/videoreference/{uuid}")
+    Call<List<AncillaryData>> findByVideoReferenceUuid(@Path("uuid") UUID videoReferenceUuid);
+
+    @DELETE("ancillarydata/videoreference/{uuid}")
+    Call<AncillaryDataDeleteCount> deleteByVideoReference(@Path("uuid") UUID videoReferenceUuid);
+
 
 }

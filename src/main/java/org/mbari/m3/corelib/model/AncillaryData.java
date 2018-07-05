@@ -12,12 +12,14 @@ public class AncillaryData {
     /** Used for merging only. Typically this will be null */
     private Instant recordedTimestamp;
     private Double altitude;
+    private String crs;
     private Double depthMeters;
     private Double latitude;
     private Double lightTransmission;
     private Double longitude;
     private Double oxygenMlL;
     private Double phi;
+    private String posePositionUnits;
     private Double pressureDbar;
     private Double psi;
     private Double salinity;
@@ -28,6 +30,35 @@ public class AncillaryData {
     private Double z;
     private Instant lastUpdatedTime;
     private UUID uuid;
+    private UUID imagedMomentUuid;
+
+    public AncillaryData() {
+    }
+
+    public AncillaryData(AncillaryData src) {
+        AncillaryData d = new AncillaryData();
+        d.setAltitude(src.getAltitude());
+        d.setCrs(src.getCrs());
+        d.setDepthMeters(src.getDepthMeters());
+        d.setLatitude(src.getLatitude());
+        d.setLightTransmission(src.getLightTransmission());
+        d.setLongitude(src.getLongitude());
+        d.setOxygenMlL(src.getOxygenMlL());
+        d.setPhi(src.getPhi());
+        d.setPosePositionUnits(src.getPosePositionUnits());
+        d.setPressureDbar(src.getPressureDbar());
+        d.setPsi(src.getPsi());
+        d.setSalinity(src.getSalinity());
+        d.setTemperatureCelsius(src.getTemperatureCelsius());
+        d.setTheta(src.getTheta());
+        d.setX(src.getX());
+        d.setY(src.getY());
+        d.setZ(src.getZ());
+        d.uuid = src.getUuid();
+        d.lastUpdatedTime = src.getLastUpdatedTime();
+        d.setImagedMomentUuid(src.getImagedMomentUuid());
+        d.setRecordedTimestamp(src.getRecordedTimestamp());
+    }
 
     public Instant getRecordedTimestamp() {
         return recordedTimestamp;
@@ -164,4 +195,30 @@ public class AncillaryData {
     public void setZ(Double z) {
         this.z = z;
     }
+
+    public String getCrs() {
+        return crs;
+    }
+
+    public void setCrs(String crs) {
+        this.crs = crs;
+    }
+
+    public String getPosePositionUnits() {
+        return posePositionUnits;
+    }
+
+    public void setPosePositionUnits(String posePositionUnits) {
+        this.posePositionUnits = posePositionUnits;
+    }
+
+    public UUID getImagedMomentUuid() {
+        return imagedMomentUuid;
+    }
+
+    public void setImagedMomentUuid(UUID imagedMomentUuid) {
+        this.imagedMomentUuid = imagedMomentUuid;
+    }
+
+
 }
