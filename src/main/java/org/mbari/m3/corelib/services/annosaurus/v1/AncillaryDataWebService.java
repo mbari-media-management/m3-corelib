@@ -16,8 +16,7 @@ import java.util.Map;
 public interface AncillaryDataWebService {
 
     /**
-     * Create or updated. Unset fields have default values of zero, so this is NOT
-     * a good implementation
+     * Create or updated.
      * @param data
      * @param headers
      * @return
