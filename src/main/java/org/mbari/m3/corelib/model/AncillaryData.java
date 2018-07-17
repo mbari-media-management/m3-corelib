@@ -36,28 +36,27 @@ public class AncillaryData {
     }
 
     public AncillaryData(AncillaryData src) {
-        AncillaryData d = new AncillaryData();
-        d.setAltitude(src.getAltitude());
-        d.setCrs(src.getCrs());
-        d.setDepthMeters(src.getDepthMeters());
-        d.setLatitude(src.getLatitude());
-        d.setLightTransmission(src.getLightTransmission());
-        d.setLongitude(src.getLongitude());
-        d.setOxygenMlL(src.getOxygenMlL());
-        d.setPhi(src.getPhi());
-        d.setPosePositionUnits(src.getPosePositionUnits());
-        d.setPressureDbar(src.getPressureDbar());
-        d.setPsi(src.getPsi());
-        d.setSalinity(src.getSalinity());
-        d.setTemperatureCelsius(src.getTemperatureCelsius());
-        d.setTheta(src.getTheta());
-        d.setX(src.getX());
-        d.setY(src.getY());
-        d.setZ(src.getZ());
-        d.uuid = src.getUuid();
-        d.lastUpdatedTime = src.getLastUpdatedTime();
-        d.setImagedMomentUuid(src.getImagedMomentUuid());
-        d.setRecordedTimestamp(src.getRecordedTimestamp());
+        setAltitude(src.getAltitude());
+        setCrs(src.getCrs());
+        setDepthMeters(src.getDepthMeters());
+        setLatitude(src.getLatitude());
+        setLightTransmission(src.getLightTransmission());
+        setLongitude(src.getLongitude());
+        setOxygenMlL(src.getOxygenMlL());
+        setPhi(src.getPhi());
+        setPosePositionUnits(src.getPosePositionUnits());
+        setPressureDbar(src.getPressureDbar());
+        setPsi(src.getPsi());
+        setSalinity(src.getSalinity());
+        setTemperatureCelsius(src.getTemperatureCelsius());
+        setTheta(src.getTheta());
+        setX(src.getX());
+        setY(src.getY());
+        setZ(src.getZ());
+        uuid = src.getUuid();
+        lastUpdatedTime = src.getLastUpdatedTime();
+        setImagedMomentUuid(src.getImagedMomentUuid());
+        setRecordedTimestamp(src.getRecordedTimestamp());
     }
 
     public Instant getRecordedTimestamp() {
