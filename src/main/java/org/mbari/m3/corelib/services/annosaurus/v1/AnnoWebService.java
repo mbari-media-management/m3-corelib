@@ -90,6 +90,9 @@ public interface AnnoWebService {
     @GET("observations/videoreference/count/{uuid}")
     Call<AnnotationCount> countByVideoReferenceUuid(@Path("uuid") UUID videoReferenceUuid);
 
+    @GET("observations/counts")
+    Call<List<AnnotationCount>> countAllGroupByVideoReferenceUuid();
+
     @GET("observations/groups")
     Call<List<String>> findGroups();
 

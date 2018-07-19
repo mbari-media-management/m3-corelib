@@ -87,6 +87,11 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
     }
 
     @Override
+    public CompletableFuture<List<AnnotationCount>> countAnnotationsGroupByVideoReferenceUuid() {
+        return sendRequest(annoService.countAllGroupByVideoReferenceUuid());
+    }
+
+    @Override
     public CompletableFuture<List<String>> findGroups() {
         return sendRequest(annoService.findGroups());
     }
