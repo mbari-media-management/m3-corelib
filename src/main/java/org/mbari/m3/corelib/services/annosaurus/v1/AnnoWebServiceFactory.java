@@ -4,9 +4,11 @@ import com.fatboyindustrial.gsonjavatime.Converters;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.mbari.m3.corelib.gson.AnnotationCreator;
 import org.mbari.m3.corelib.gson.ByteArrayConverter;
 import org.mbari.m3.corelib.gson.DurationConverter;
 import org.mbari.m3.corelib.gson.TimecodeConverter;
+import org.mbari.m3.corelib.model.ImagedMoment;
 import org.mbari.m3.corelib.services.RetrofitServiceFactory;
 import org.mbari.vcr4j.time.Timecode;
 
@@ -32,6 +34,7 @@ public class AnnoWebServiceFactory extends RetrofitServiceFactory {
                 .setPrettyPrinting()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                .registerTypeAdapter(ImagedMoment.class, new AnnotationCreator())
                 .registerTypeAdapter(Duration.class, new DurationConverter())
                 .registerTypeAdapter(Timecode.class, new TimecodeConverter())
                 .registerTypeAdapter(byte[].class, new ByteArrayConverter());
