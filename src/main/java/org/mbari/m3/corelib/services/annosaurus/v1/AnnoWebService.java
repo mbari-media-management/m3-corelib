@@ -90,8 +90,21 @@ public interface AnnoWebService {
     @GET("observations/videoreference/count/{uuid}")
     Call<AnnotationCount> countByVideoReferenceUuid(@Path("uuid") UUID videoReferenceUuid);
 
+    /**
+     * Counts the annotations for every videoreference
+     * @return
+     */
     @GET("observations/counts")
     Call<List<AnnotationCount>> countAllGroupByVideoReferenceUuid();
+
+    /**
+     * Counts the imaged moments for every videoreference. This number can often
+     * be less the `countAllGroupByVideoReferenceUuid` as an imaged-moment may
+     * contain more than one `observation` (a.k.a. annotation)
+     * @return
+     */
+    @GET("imagedmoments/counts")
+    Call<List<AnnotationCount>> countImagedMomentsGroupByVideoReferenceUuid();
 
     @GET("observations/groups")
     Call<List<String>> findGroups();
