@@ -130,6 +130,10 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
         return sendRequest(annoService.create(annotations, bulkHeaders));
     }
 
+    public CompletableFuture<Collection<Annotation>> updateRecordedTimestampsForTapes(Collection<Annotation> annotations) {
+        return sendRequest(annoService.updateRecordedTimestampForTapes(annotations, bulkHeaders));
+    }
+
     @Override
     public CompletableFuture<Association> createAssociation(UUID observationUuid, Association association) {
         Call<Association> call = assService.create(observationUuid,

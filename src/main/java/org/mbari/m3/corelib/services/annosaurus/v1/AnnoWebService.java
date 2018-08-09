@@ -69,6 +69,10 @@ public interface AnnoWebService {
     Call<Collection<Annotation>> create(@Body Collection<Annotation> annotations,
                                         @HeaderMap Map<String, String> headers);
 
+    @PUT("annotations/tapetime")
+    Call<Collection<Annotation>> updateRecordedTimestampForTapes(@Body Collection<Annotation> annotations,
+                                                                 @HeaderMap Map<String, String> headers);
+
     @FormUrlEncoded
     @PUT("annotations/{uuid}")
     Call<Annotation> update(@Path("uuid") UUID annotationUuid,
