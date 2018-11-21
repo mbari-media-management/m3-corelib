@@ -9,8 +9,13 @@ import retrofit2.Call;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.net.URL;
+import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Brian Schlining
@@ -263,6 +268,76 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
         if (value != null) {
             map.put(key, asString(value));
         }
+    }
+
+    /**
+     * Find all annotations for a given video reference using a giving page size
+     * to avoid timeouts
+     * @param videoReferenceUuid
+     */
+    public CompletableFuture<List<Annotation>> findAnnotations(UUID videoReferenceUuid,
+                                                               int pageSize,
+                                                               Duration pageTimeout,
+                                                               ExecutorService executor) {
+
+        CompletableFuture<List<Annotation>> future = new CompletableFuture<>();
+        countAnnotations(videoReferenceUuid)
+                .thenAccept(ac -> findAnnotations(ac.getVideoReferenceUuid(),
+                            0,
+                            ac.getCount(),
+                            pageSize,
+                            pageTimeout,
+                            executor).whenComplete((annotations, ex) -> {
+                       if (ex != null) {
+                           future.completeExceptionally(ex);
+                       }
+                       else {
+                           future.complete(annotations);
+                       }
+                    }));
+
+        return future;
+
+    }
+
+    public CompletableFuture<List<Annotation>> findAnnotations(UUID videoReferenceUuid,
+                                                                long limit,
+                                                                long offset,
+                                                                int pageSize,
+                                                                Duration pageTimeout,
+                                                                ExecutorService executor) {
+
+
+        CompletableFuture<List<Annotation>> cf = new CompletableFuture<>();
+
+        Runnable task = () -> {
+            List<Annotation> annotations = new ArrayList<>();
+            long annotationCount = limit - offset;
+            int pageCount = (int) Math.ceil(annotationCount / (double) pageSize);
+            for (int i = 0; i < pageCount; i++) {
+                long offsetForPage = i * pageSize;
+
+                CompletableFuture<List<Annotation>> future = findAnnotations(videoReferenceUuid,
+                        (long) pageSize,
+                        offsetForPage);
+
+                try {
+                    List<Annotation> annos = future.get(pageTimeout.toMillis(), TimeUnit.MILLISECONDS);
+                    annotations.addAll(annos);
+                }
+                catch (Exception e) {
+                    String msg = "Failed to load page chunk (" + offsetForPage + " to " +
+                            offsetForPage + pageSize + ")";
+                    Exception e0 = new RuntimeException(msg, e);
+                    cf.completeExceptionally(e0);
+                    break;
+                }
+            }
+            cf.complete(annotations);
+        };
+
+        executor.submit(task);
+        return cf;
     }
 
 }

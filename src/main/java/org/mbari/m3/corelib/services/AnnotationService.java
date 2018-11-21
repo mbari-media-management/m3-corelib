@@ -3,10 +3,12 @@ package org.mbari.m3.corelib.services;
 import org.mbari.m3.corelib.model.*;
 
 import java.net.URL;
+import java.time.Duration;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
 
 /**
  *
@@ -25,6 +27,18 @@ public interface AnnotationService {
     CompletableFuture<List<Annotation>> findAnnotations(UUID videoReferenceUuid);
 
     CompletableFuture<List<Annotation>> findAnnotations(UUID videoReferenceUuid, Long limit, Long offset);
+
+    CompletableFuture<List<Annotation>> findAnnotations(UUID videoReferenceUuid,
+                                                        int pageSize,
+                                                        Duration pageTimeout,
+                                                        ExecutorService executor);
+
+    CompletableFuture<List<Annotation>> findAnnotations(UUID videoReferenceUuid,
+                                                               long limit,
+                                                               long offset,
+                                                               int pageSize,
+                                                               Duration pageTimeout,
+                                                               ExecutorService executor);
 
     CompletableFuture<List<Annotation>> findByImageReference(UUID imageReferenceUuid);
 
