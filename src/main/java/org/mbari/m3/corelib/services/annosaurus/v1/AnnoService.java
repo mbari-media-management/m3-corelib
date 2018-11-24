@@ -283,8 +283,8 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
         CompletableFuture<List<Annotation>> future = new CompletableFuture<>();
         countAnnotations(videoReferenceUuid)
                 .thenAccept(ac -> findAnnotations(ac.getVideoReferenceUuid(),
-                            0,
                             ac.getCount(),
+                            0,
                             pageSize,
                             pageTimeout,
                             executor).whenComplete((annotations, ex) -> {
@@ -312,8 +312,7 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
 
         Runnable task = () -> {
             List<Annotation> annotations = new ArrayList<>();
-            long annotationCount = limit - offset;
-            int pageCount = (int) Math.ceil(annotationCount / (double) pageSize);
+            int pageCount = (int) Math.ceil(limit / (double) pageSize);
             for (int i = 0; i < pageCount; i++) {
                 long offsetForPage = i * pageSize;
 
