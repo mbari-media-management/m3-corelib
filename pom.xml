@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>org.mbari.m3</groupId>
   <artifactId>m3-corelib</artifactId>
   <version>0.2.0-SNAPSHOT</version>
-
   <name>m3-corelib</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -24,15 +19,14 @@
     <guice.version>4.2.2</guice.version>
     <jersey.version>2.27</jersey.version>
     <junit.version>4.12</junit.version>
-    <jwt.version>3.4.1</jwt.version>
+    <jwt.version>3.5.0</jwt.version>
     <mbarix4j.version>1.10.0</mbarix4j.version>
-    <okhttp.version>3.12.0</okhttp.version>
+    <okhttp.version>3.12.1</okhttp.version>
     <retrofit.version>2.5.0</retrofit.version>
-    <rxjava.version>2.2.4</rxjava.version>
+    <rxjava.version>2.2.5</rxjava.version>
     <slf4j.version>1.7.25</slf4j.version>
     <vcr4j.version>4.0.2</vcr4j.version>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.mbari.vcr4j</groupId>
@@ -110,11 +104,10 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
-
   <build>
-    <pluginManagement>      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
+      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -158,7 +151,6 @@
       </plugins>
     </pluginManagement>
   </build>
-
   <repositories>
     <repository>
       <snapshots>
@@ -169,7 +161,6 @@
       <url>https://dl.bintray.com/hohonuuli/maven</url>
     </repository>
   </repositories>
-
   <distributionManagement>
     <repository>
       <id>bintray</id>
