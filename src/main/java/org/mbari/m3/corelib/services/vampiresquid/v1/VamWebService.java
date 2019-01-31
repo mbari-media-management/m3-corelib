@@ -1,5 +1,6 @@
 package org.mbari.m3.corelib.services.vampiresquid.v1;
 
+import org.mbari.m3.corelib.model.LastUpdate;
 import org.mbari.m3.corelib.model.Media;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -75,6 +76,16 @@ public interface VamWebService {
     Call<Media> update(@Path("uuid") UUID videoUuid,
             @FieldMap Map<String, String> fields,
             @HeaderMap Map<String, String> headers);
+
+
+    @GET("videosequences/lastupdate/{uuid}")
+    Call<LastUpdate> findLastVideoSequenceUpdate(@Path("uuid") UUID uuid);
+
+    @GET("videos/lastupdate/{uuid}")
+    Call<LastUpdate> findLastVideoUpdate(@Path("uuid") UUID uuid);
+
+    @GET("videoreferences/lastupdate/{uuid}")
+    Call<LastUpdate> findLastVideoReferenceUpdate(@Path("uuid") UUID uuid);
 
     @GET("videosequences/cameras")
     Call<List<String>> findAllCameraIds();

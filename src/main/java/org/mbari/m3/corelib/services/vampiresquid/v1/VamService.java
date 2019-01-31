@@ -1,6 +1,7 @@
 package org.mbari.m3.corelib.services.vampiresquid.v1;
 
 import org.mbari.m3.corelib.gson.ByteArrayConverter;
+import org.mbari.m3.corelib.model.LastUpdate;
 import org.mbari.m3.corelib.model.Media;
 import org.mbari.m3.corelib.services.AuthService;
 import org.mbari.m3.corelib.services.MediaService;
@@ -126,6 +127,18 @@ public class VamService implements MediaService, RetrofitWebService {
 
     public CompletableFuture<List<Media>> findByFilename(String filename) {
         return sendRequest(vamWebService.findByFilename(filename));
+    }
+
+    public CompletableFuture<LastUpdate> findLastVideoSequenceUpdate(UUID uuid) {
+        return sendRequest(vamWebService.findLastVideoSequenceUpdate(uuid));
+    }
+
+    public CompletableFuture<LastUpdate> findLastVideoUpdate(UUID uuid) {
+        return sendRequest(vamWebService.findLastVideoUpdate(uuid));
+    }
+
+    public CompletableFuture<LastUpdate> findLastVideoReferenceUpdate(UUID uuid) {
+        return sendRequest(vamWebService.findLastVideoReferenceUpdate(uuid));
     }
 
     private void addField(Map<String, String> map, String key, Object value) {

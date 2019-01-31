@@ -215,6 +215,6 @@ public class Media {
 
     @Override
     public int hashCode() {
-        return videoReferenceUuid.hashCode();
+        return uri.hashCode();
     }
 }
