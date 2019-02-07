@@ -69,7 +69,7 @@ public interface AnnoWebService {
     Call<Collection<Annotation>> create(@Body Collection<Annotation> annotations,
                                         @HeaderMap Map<String, String> headers);
 
-    @PUT("annotations/tapetime")
+    @PUT("imagedmoments/tapetime")
     Call<Collection<Annotation>> updateRecordedTimestampForTapes(@Body Collection<Annotation> annotations,
                                                                  @HeaderMap Map<String, String> headers);
 
