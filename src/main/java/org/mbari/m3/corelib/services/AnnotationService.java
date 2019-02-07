@@ -62,7 +62,7 @@ public interface AnnotationService {
 
     CompletableFuture<Collection<Annotation>> createAnnotations(Collection<Annotation> annotations);
 
-    CompletableFuture<TimecodeUpdateCount> updateRecordedTimestampsForTapes(Collection<Annotation> annotations);
+    CompletableFuture<Collection<Annotation>> updateRecordedTimestampsForTapes(Collection<Annotation> annotations);
 
     CompletableFuture<Association> createAssociation(UUID observationUuid, Association association);
 
