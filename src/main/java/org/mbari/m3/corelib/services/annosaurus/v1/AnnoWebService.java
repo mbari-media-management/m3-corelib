@@ -3,6 +3,7 @@ package org.mbari.m3.corelib.services.annosaurus.v1;
 import org.mbari.m3.corelib.model.AncillaryData;
 import org.mbari.m3.corelib.model.Annotation;
 import org.mbari.m3.corelib.model.AnnotationCount;
+import org.mbari.m3.corelib.model.TimecodeUpdateCount;
 import org.mbari.vcr4j.time.Timecode;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -70,8 +71,8 @@ public interface AnnoWebService {
                                         @HeaderMap Map<String, String> headers);
 
     @PUT("imagedmoments/tapetime")
-    Call<Collection<Annotation>> updateRecordedTimestampForTapes(@Body Collection<Annotation> annotations,
-                                                                 @HeaderMap Map<String, String> headers);
+    Call<TimecodeUpdateCount> updateRecordedTimestampForTapes(@Body Collection<Annotation> annotations,
+                                                              @HeaderMap Map<String, String> headers);
 
     @FormUrlEncoded
     @PUT("annotations/{uuid}")
