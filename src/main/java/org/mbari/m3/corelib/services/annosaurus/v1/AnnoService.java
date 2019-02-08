@@ -27,6 +27,7 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
     private final AssociationWebService assService;
     private final ImageWebService imageService;
     private final AncillaryDataWebService dataService;
+    private final IndexWebService indexService;
 
     private final Map<String, String> defaultHeaders;
     private final Map<String, String> bulkHeaders;
@@ -37,6 +38,7 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
         assService = serviceFactory.create(AssociationWebService.class, authService);
         imageService = serviceFactory.create(ImageWebService.class, authService);
         dataService = serviceFactory.create(AncillaryDataWebService.class, authService);
+        indexService = serviceFactory.create(IndexWebService.class, authService);
         defaultHeaders = new HashMap<>();
         defaultHeaders.put("Accept", "application/json");
         defaultHeaders.put("Accept-Charset", "utf-8");
@@ -84,6 +86,10 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
 
     public CompletableFuture<Association> findAssociationByUuid(UUID associationUuid) {
         return sendRequest(assService.findByUuid(associationUuid));
+    }
+
+    public CompletableFuture<List<Index>> findIndicesByVideoReferenceUuid(UUID videoReferenceUuid) {
+        return sendRequest(indexService.findByVideoReferenceUuid(videoReferenceUuid));
     }
 
     @Override
@@ -188,6 +194,10 @@ public class AnnoService implements AnnotationService, RetrofitWebService {
 
     public CompletableFuture<Collection<Annotation>> updateAnnotations(Collection<Annotation> annotations) {
         return sendRequest(annoService.update(annotations, bulkHeaders));
+    }
+
+    public CompletableFuture<List<Index>> updateIndexRecordedTimestamps(Collection<Index> indices) {
+        return sendRequest(indexService.update(indices, bulkHeaders));
     }
 
     @Override
