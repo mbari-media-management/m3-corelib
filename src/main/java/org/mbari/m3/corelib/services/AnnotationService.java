@@ -94,4 +94,8 @@ public interface AnnotationService {
 
     CompletableFuture<List<AncillaryData>> createOrUpdateAncillaryData(List<AncillaryData> ancillaryData);
 
+    CompletableFuture<List<Index>> findIndicesByVideoReferenceUuid(UUID videoReferenceUuid);
+
+    CompletableFuture<List<Index>> updateIndexRecordedTimestamps(Collection<Index> indices);
+
 }

@@ -21,6 +21,14 @@ public class Index {
 
     public Index() {}
 
+    public Index(Index index) {
+        this.uuid = index.uuid;
+        this.videoReferenceUuid = index.videoReferenceUuid;
+        this.elapsedTime = index.elapsedTime;
+        this.recordedTimestamp = index.recordedTimestamp;
+        this.timecode = index.timecode;
+    }
+
     public Index(UUID uuid, UUID videoReferenceUuid, Duration elapsedTime) {
         this.uuid = uuid;
         this.videoReferenceUuid = videoReferenceUuid;
