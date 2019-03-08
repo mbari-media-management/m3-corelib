@@ -15,7 +15,7 @@ public class Index {
     private UUID uuid;
     private UUID videoReferenceUuid;
     private Duration elapsedTime;
-    private Instant recordedTimestamp;
+    private Instant recordedDate;
     private Timecode timecode;
     private Instant lastUpdatedTime;
 
@@ -25,7 +25,7 @@ public class Index {
         this.uuid = index.uuid;
         this.videoReferenceUuid = index.videoReferenceUuid;
         this.elapsedTime = index.elapsedTime;
-        this.recordedTimestamp = index.recordedTimestamp;
+        this.recordedDate = index.recordedDate;
         this.timecode = index.timecode;
     }
 
@@ -35,10 +35,10 @@ public class Index {
         this.elapsedTime = elapsedTime;
     }
 
-    public Index(UUID uuid, UUID videoReferenceUuid, Instant recordedTimestamp) {
+    public Index(UUID uuid, UUID videoReferenceUuid, Instant recordedDate) {
         this.uuid = uuid;
         this.videoReferenceUuid = videoReferenceUuid;
-        this.recordedTimestamp = recordedTimestamp;
+        this.recordedDate = recordedDate;
     }
 
     public Index(UUID uuid, UUID videoReferenceUuid, Timecode timecode) {
@@ -47,11 +47,11 @@ public class Index {
         this.timecode = timecode;
     }
 
-    public Index(UUID uuid, UUID videoReferenceUuid, Duration elapsedTime, Instant recordedTimestamp, Timecode timecode) {
+    public Index(UUID uuid, UUID videoReferenceUuid, Duration elapsedTime, Instant recordedDate, Timecode timecode) {
         this.uuid = uuid;
         this.videoReferenceUuid = videoReferenceUuid;
         this.elapsedTime = elapsedTime;
-        this.recordedTimestamp = recordedTimestamp;
+        this.recordedDate = recordedDate;
         this.timecode = timecode;
     }
 
@@ -79,12 +79,12 @@ public class Index {
         this.elapsedTime = elapsedTime;
     }
 
-    public Instant getRecordedTimestamp() {
-        return recordedTimestamp;
+    public Instant getRecordedDate() {
+        return recordedDate;
     }
 
-    public void setRecordedTimestamp(Instant recordedTimestamp) {
-        this.recordedTimestamp = recordedTimestamp;
+    public void setRecordedDate(Instant recordedDate) {
+        this.recordedDate = recordedDate;
     }
 
     public Timecode getTimecode() {

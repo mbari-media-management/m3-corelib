@@ -64,8 +64,8 @@ public class IndexServiceTest {
 
         Index index = ix.get(0);
         Instant now = Instant.now();
-        assertTrue(!now.equals(index.getRecordedTimestamp()));
-        index.setRecordedTimestamp(now);
+        assertTrue(!now.equals(index.getRecordedDate()));
+        index.setRecordedDate(now);
         List<Index> data = new ArrayList<>();
         data.add(index);
         System.out.println(gson.toJson(index));
@@ -76,8 +76,8 @@ public class IndexServiceTest {
         List<Index> ix1 = ids1.get();
         assertEquals(1, ix1.size());
         System.out.println(gson.toJson(ix1.get(0)));
-        assertNotNull(ix1.get(0).getRecordedTimestamp());
-        assertEquals(now, ix1.get(0).getRecordedTimestamp());
+        assertNotNull(ix1.get(0).getRecordedDate());
+        assertEquals(now, ix1.get(0).getRecordedDate());
 
 
 
