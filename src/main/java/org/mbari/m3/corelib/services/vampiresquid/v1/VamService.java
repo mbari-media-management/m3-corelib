@@ -14,6 +14,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 /**
  * @author Brian Schlining
@@ -127,6 +128,13 @@ public class VamService implements MediaService, RetrofitWebService {
 
     public CompletableFuture<List<Media>> findByFilename(String filename) {
         return sendRequest(vamWebService.findByFilename(filename));
+    }
+
+    public CompletableFuture<List<URI>> findAllURIs() {
+        return sendRequest(vamWebService.findAllURIs())
+                .thenApply(s -> s.stream()
+                        .map(URI::create)
+                        .collect(Collectors.toList()));
     }
 
     public CompletableFuture<LastUpdate> findLastVideoSequenceUpdate(UUID uuid) {

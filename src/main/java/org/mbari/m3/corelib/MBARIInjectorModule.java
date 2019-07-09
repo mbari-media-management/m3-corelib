@@ -4,7 +4,6 @@ import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.name.Names;
 import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
 
 import org.mbari.m3.corelib.model.Authorization;
 import org.mbari.m3.corelib.services.*;
@@ -40,6 +39,7 @@ public class MBARIInjectorModule implements Module {
     @Override
     public void configure(Binder binder) {
         configureAnnotationService(binder);
+        configureAnnotationServiceV2(binder);
         configureMediaService(binder);
         configureConceptService(binder);
         configurePrefsServices(binder);
@@ -62,6 +62,27 @@ public class MBARIInjectorModule implements Module {
                 .toInstance(authService);
         binder.bind(AnnoWebServiceFactory.class).toInstance(factory);
         binder.bind(AnnotationService.class).to(AnnoService.class);
+    }
+
+    private void configureAnnotationServiceV2(Binder binder) {
+        String endpoint = config.getString("annotation.service.v2.url");
+        String clientSecret = config.getString("annotation.service.client.secret");
+        Duration timeout = config.getDuration("annotation.service.timeout");
+        org.mbari.m3.corelib.services.annosaurus.v2.AnnoWebServiceFactory factory =
+                new org.mbari.m3.corelib.services.annosaurus.v2.AnnoWebServiceFactory(endpoint, timeout);
+        AuthService authService = new BasicJWTAuthService(factory,
+                new Authorization("APIKEY", clientSecret));
+        binder.bind(String.class)
+                .annotatedWith(Names.named("ANNO_ENDPOINT_V2"))
+                .toInstance(endpoint);
+        // THis is not needed as its configure in `configureAnnotationService`
+//        binder.bind(AuthService.class)
+//                .annotatedWith(Names.named("ANNO_AUTH"))
+//                .toInstance(authService);
+        binder.bind(org.mbari.m3.corelib.services.annosaurus.v2.AnnoWebServiceFactory.class)
+                .toInstance(factory);
+        binder.bind(AnnotationServiceV2.class)
+                .to(org.mbari.m3.corelib.services.annosaurus.v2.AnnoService.class);
     }
 
     private void configureMediaService(Binder binder) {

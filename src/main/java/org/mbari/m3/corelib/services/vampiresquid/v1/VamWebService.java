@@ -87,6 +87,9 @@ public interface VamWebService {
     @GET("videoreferences/lastupdate/{uuid}")
     Call<LastUpdate> findLastVideoReferenceUpdate(@Path("uuid") UUID uuid);
 
+    @GET("videoreferences/uris")
+    Call<List<String>> findAllURIs();
+
     @GET("videosequences/cameras")
     Call<List<String>> findAllCameraIds();
 
