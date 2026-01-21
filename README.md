@@ -1,5 +1,13 @@
 # m3-corelib
 
-__This project is deprecated.__ Use the [vars-annotation/org.mbari.vars.services](https://github.com/mbari-media-management/vars-annotation/tree/master/org.mbari.vars.services) module instead. It's available via bintray at <https://bintray.com/hohonuuli/maven>
-
 __tl;dr__: A Java library for making calls to the M3 microservice API's.
+
+> [!IMPORTANT]
+> __This project is deprecated.__ Use the following libraries, available through [Maven Central](https://mvnrepository.com/repos/central) instead:
+> 1. <https://github.com/mbari-org/annosaurus-java-sdk>
+> 2. <https://github.com/mbari-org/oni-java-sdk>
+> 3. <https://github.com/mbari-org/raziel-java-sdk>
+> 4. <https://github.com/mbari-org/vampire-squid-java-sdk>
+
+
+
