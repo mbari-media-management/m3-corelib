@@ -17,7 +17,7 @@
     <gson.version>2.8.5</gson.version>
     <gsontime.version>1.1.1</gsontime.version>
     <guice.version>4.2.2</guice.version>
-    <jersey.version>2.29</jersey.version>
+    <jersey.version>2.34</jersey.version>
     <junit.version>4.12</junit.version>
     <jwt.version>3.8.1</jwt.version>
     <mbarix4j.version>1.10.0</mbarix4j.version>
