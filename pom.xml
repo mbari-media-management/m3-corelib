@@ -19,7 +19,7 @@
     <guice.version>4.2.2</guice.version>
     <jersey.version>2.29</jersey.version>
     <junit.version>4.12</junit.version>
-    <jwt.version>3.8.1</jwt.version>
+    <jwt.version>3.10.1</jwt.version>
     <mbarix4j.version>1.10.0</mbarix4j.version>
     <okhttp.version>4.0.0</okhttp.version>
     <retrofit.version>2.6.0</retrofit.version>
